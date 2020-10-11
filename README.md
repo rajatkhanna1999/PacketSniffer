@@ -5,8 +5,8 @@ It Sniffs the packets present in the network and GUI is mage using eel library.
 ## Getting Started
 - Clone the repo and cd into the directory
 ```sh
-$ git clone git@github.com:SouravJohar/getting-started-with-eel.git
-$ cd getting-started-with-eel
+$ git clone https://github.com/rajatkhanna1999/PacketSniffer.git
+$ cd PacketSniffer
 ```
 
 - Install eel, and pyinstaller
