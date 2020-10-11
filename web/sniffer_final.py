@@ -1,55 +1,36 @@
-import io
-import pyqrcode
-from base64 import b64encode
-import eel
 import socket
 from struct import *
 import datetime
 import pcapy
 import sys
-
-eel.init('web')
-
-
-@eel.expose
-def dummy(dummy_param):
-    print("I got a parameter: ", dummy_param)
-    return "string_value", 1, 1.2, True, [1, 2, 3, 4], {"name": "eel"}
-
-
-@eel.expose
-def generate_qr(data):
-    img = pyqrcode.create(data)
-    buffers = io.BytesIO()
-    img.png(buffers, scale=8)
-    encoded = b64encode(buffers.getvalue()).decode("ascii")
-    print("QR code generation successful.")
-    return "data:image/png;base64, " + encoded
-
-@eel.expose
-def findDevices():
-    devices = pcapy.findalldevs()
-    print (devices)
-
-    print ('Available devices are :')
-    for d in devices :
-        eel.addButton(d)
-        print (d)
-
-    eel.addButton("stop")
-
-    return devices
-
-@eel.expose
-def sniffPackets(dev):
-    print ('Sniffing device ' + dev)
-
-    cap = pcapy.open_live(dev , 65536 , 1 , 0)
-
-    while(1) :
-        (header, packet) = cap.next()
-        #print ('%s: captured %d bytes, truncated to %d bytes' %(datetime.datetime.now(), header.getlen(), header.getcaplen()))
-        parse_packet(packet)
+import re
+def main(argv):
+	devices = pcapy.findalldevs()
+	print (devices)
+	
+	print ('Available devices are :')
+	for d in devices :
+		print (d)
+	
+	dev = input('Enter device name to sniff : ')
+	
+	print ('Sniffing device ' , dev)
+	socket.setdefaulttimeout(2)
+	s = socket.socket();
+	cap = pcapy.open_live(dev , 65536 , 1 , 2)
+	filt='htt'
+	if filt=='http':
+		cap.setfilter('tcp port 80')
+	elif filt=='tcp':
+		cap.setfilter('tcp')
+	elif filt=='udp':
+		cap.setfilter('udp')
+	elif filt=='icmp':
+		cap.setfilter('icmp')
+	while(1) :
+		(header, packet) = cap.next()
+		#print ('%s: captured %d bytes, truncated to %d bytes' %(datetime.datetime.now(), header.getlen(), header.getcaplen()))
+		parse_packet(packet)
 
 
 def eth_addr (a) :
@@ -78,8 +59,8 @@ def parse_packet(packet) :
 
 		ttl = iph[5]
 		protocol = iph[6]
-		s_addr = socket.inet_ntoa(iph[8])
-		d_addr = socket.inet_ntoa(iph[9])
+		s_addr = socket.inet_ntoa(iph[8]);
+		d_addr = socket.inet_ntoa(iph[9]);
 
 		print ('Version : ' , str(version) , ' IP Header Length : ' , str(ihl) , ' TTL : ' , str(ttl) , ' Protocol : ' , str(protocol) , ' Source Address : ' , str(s_addr) , ' Destination Address : ' , str(d_addr))
 
@@ -105,8 +86,14 @@ def parse_packet(packet) :
 			
 			#get data from the packet
 			data = packet[h_size:]
-			
-			print ('Data : ' , data.decode('utf8','ignore'),'\n')
+			data = data.decode('utf8','ignore')
+			x = re.search("[pP][aA][Ss][Ss][wW][oO][rR][dD]", data)
+			y = re.search("[Cc][Oo][Oo][Kk][iI][Ee]", data)
+			print ('Data : ' , data)
+			if (x):
+				print ('Kewyord Found Password : ',x,'\n')
+			if (y):
+				print ('Kewyord Found Cookie : ',y,'\n')
 
 		#ICMP Packets
 		elif protocol == 1 :
@@ -128,8 +115,8 @@ def parse_packet(packet) :
 			
 			#get data from the packet
 			data = packet[h_size:]
-			
-			print ('Data : ' , data.decode('utf8','ignore'),'\n')
+			data = data.decode('utf8','ignore')
+			print ('Data : ' , data,'\n')
 
 		#UDP packets
 		elif protocol == 17 :
@@ -152,8 +139,14 @@ def parse_packet(packet) :
 			
 			#get data from the packet
 			data = packet[h_size:]
-			
-			print ('Data : ' , data.decode('utf8','ignore'),'\n')
+			data = data.decode('utf8','ignore')
+			x = re.search("[pP][aA][Ss][Ss][wW][oO][rR][dD]", data)
+			y = re.search("[Cc][Oo][Oo][Kk][iI][Ee]", data)
+			print ('Data : ' , data)
+			if (x):
+				print ('Kewyord Found Password : ',x,'\n')
+			if (y):
+				print ('Kewyord Found Cookie : ',y,'\n')
 
 		#some other IP packet like IGMP
 		else :
@@ -161,4 +154,5 @@ def parse_packet(packet) :
 			
 		print
 
-eel.start('index.html', size=(1000, 600))
+if __name__ == "__main__":
+	main(sys.argv)

@@ -82,22 +82,32 @@ p {
 }
 
 .form-control::-webkit-input-placeholder {
-    color: #cec1f4;
+    color:  #fff;
+    opacity: 1;
+}
+
+.rajat::-webkit-input-placeholder {
+    color:  #fff;
     opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-    color: #cec1f4;
+    color:  #fff;
     opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-    color: #cec1f4;
+    color:  #fff;
     opacity: 1;
 }
 
 .form-control::placeholder {
-    color: #cec1f4;
+    color:  #fff;
+    opacity: 1;
+}
+
+::placeholder {
+    /* color: #cec1f4; */
     opacity: 1;
 }
 
@@ -148,3 +158,79 @@ p {
 .wellcome-heading {
     margin-bottom: 100px;
 }
+
+table tr:not(:first-child){
+    cursor: pointer;transition: all .25s ease-in-out;
+}
+table tr:not(:first-child):hover{background-color: #ddd;}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top:150px;
+}
+  
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.gridtable {
+    margin:0 auto;
+    width:95%;
+    overflow:auto;
+    font-family: helvetica,arial,sans-serif;
+    font-size:14px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+    text-align: center;
+}
+#table_detail
+{
+    width:500px;
+    text-align:left;
+    border-collapse: collapse;
+    color:#2E2E2E;
+    border:#A4A4A4;
+}
+#table_detail tr:hover
+{
+    background-color:#F2F2F2;
+}
+#table_detail .hidden_row
+{
+    display:none;
+}
+div.ex1 {
+    background-color: rgb(140, 20, 219);
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+    position: absolute;
+    top: 20;
+    right: 0;
+}
+/* table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #F6B4A5;
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+}
+.breakrow{
+  font-weight: bold;
+  background-color: #A0E3EA;  
+}
+.datarow{
+    background-color: whitesmoke;
+} */
+  
+/* tr:hover {background-color:#f5f5f5;} */

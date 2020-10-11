@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Packet Sniffer</title>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <script type="text/javascript"> 
+        function showHideRow(row) { 
+            $("#" + row).toggle(); 
+            console.log("toggled" + row);
+        } 
+    </script> -->
+    <!-- <script type="text/javascript">  
+        $(document).ready(function () {  
+            $('tr.parent')  
+                .css("cursor", "pointer")  
+                .attr("title", "Click to expand/collapse")  
+                .click(function () {  
+                    $(this).siblings('.child-' + this.id).toggle();  
+                });  
+            $('tr[@class^=child-]').hide().children('td');  
+        });  
+    </script>   -->
+</head>
+<body>
+    <section class="wellcome_area clearfix" id="home">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 col-md">
+                    <div class="wellcome-heading">
+                        <div class="ex1" style="text-align:left" id="dekho"></div>
+                        <h2>Packet Sniffer</h2>
+                        <h3>PS</h3>
+                        <!-- <p style="text-align:right; position: fixed; bottom: 0; width:100%; text-align: center" id = "dekho">This is some text in a paragraph.</p> -->
+                        <p >Sniff the packets across channels.</p>
+                    </div>
+                    <div class="get-start-area">
+                        <form class="form-inline">
+                            <!-- <input type="text" id="data" class="form-control email" placeholder="Enter text"> -->
+                            <input type="button" class="submit" value="Find Available Devices" onclick="devices()">
+                            <input type="text" id="data" class="form-control email" placeholder="Enter text">
+                            <input type="button" class="submit" value="Search KeyWord" onclick="generateQRCode()">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class = "row">
+            <div class="col">
+                <div class = "card card-body">
+                    <input id = "search-input" class="form-control" type = "te">
+                </div>
+            </div>
+        </div> -->
+        <table name="Table" id="table" border="1" ></table>
+        <div class="welcome-thumb">
+            <img id="qr" src="" width="60%">
+        </div>
+    </section>
+</body>
+</html>
