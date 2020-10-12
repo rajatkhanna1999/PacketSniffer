@@ -7,6 +7,8 @@ function generateQRCode() {
 	// console.log(document.getElementById('dekho').innerHTML);
 	console.log(word);
 	console.log(textValue);
+	word = word.toLowerCase();
+	textValue = textValue.toLowerCase();
 	if (textValue.indexOf(word)!=-1)
 	{
 		alert('found')
@@ -21,6 +23,7 @@ function devices() {
 }
 
 var num = 0, tableHeader = 0;
+var filter = 'none';
 
 eel.expose(addText);
 function addText(){
@@ -50,8 +53,6 @@ function addLine(){
 	element.appendChild(br);
 }
 
-var filter = 'none';
-
 function solve(event){
 	filter = this.value;
 }
@@ -77,6 +78,7 @@ function addButtonClear(d){
 	btn.innerHTML =  d;
 	btn.id = d;
 	num = 0;
+	filter = 'none';
 	document.getElementById("dekho").innerHTML = "";
 	btn.value = d;
 	btn.style.cssText = "background-color: #fb397d;color: #fff;font-weight: 500;display: inline-block;border: none;height: 50px;min-width: 167px;line-height: 46px;text-align: center;border-radius: 24px 24px 24px 0px;margin-left: 10px;"
@@ -85,6 +87,13 @@ function addButtonClear(d){
 }
 
 function DeleteRows() {
+	filter = 'none';
+	num = 0;
+	var divBig = document.getElementById('dekho');
+	var divs = divBig.getElementsByTagName('div');
+	for (var i = 0; i < divs.length; i += 1) {
+		divs[i].innerHTML = "";
+	}
 	var rowCount = table.rows.length;
 	for (var i = rowCount - 1; i > 0; i--) {
 		table.deleteRow(i);
@@ -125,6 +134,11 @@ function EditData(event) {
 			btn.className = "btn";
 			btn.innerHTML = "Press For Packet Details";
 			btn.onclick = (function(){
+				var divBig = document.getElementById('dekho');
+				var divs = divBig.getElementsByTagName('div');
+				for (var i = 0; i < divs.length; i += 1) {
+					divs[i].innerHTML = "";
+				}
 				console.log(ret);
 				var para = document.createElement("div"); 
 				para.style.color = "#000000";

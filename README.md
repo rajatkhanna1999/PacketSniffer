@@ -28,5 +28,5 @@ $ sudo python PacketSniffer.py
 ## Packaging the app
 You can pass any valid `pyinstaller` flag in the following command to further customize the way your app is built.
 ```sh
-$ python -m eel PacketSniffer.py web --noconsole --onefile --icon=barcode.icns
+$ python -m eel PacketSniffer.py web --noconsole --onefile --icon=packet-sniffer-tools.icns
 ```
