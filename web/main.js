@@ -1,4 +1,4 @@
-function generateQRCode() {
+function searchKey() {
 	console.log("calledMe");
 	var word = document.getElementById("data").value;
 	var textValue = document.getElementById('dekho').innerHTML;
@@ -9,9 +9,27 @@ function generateQRCode() {
 	console.log(textValue);
 	word = word.toLowerCase();
 	textValue = textValue.toLowerCase();
+	var idx = 0, stidx = 0, flag = 0;
+	// while((idx = textValue.indexOf(word, stidx)) > -1)
+	// {
+	// 	var inhtml = document.getElementById('dekho').innerHTML;
+	// 	inhtml = inhtml.substring(0,idx) + "<span class='highlight'>" + inhtml.substring(idx,idx+word.length) + "</span>" + inhtml.substring(idx + word.length);
+	// 	document.getElementById('dekho').innerHTML = inhtml;
+	// 	stidx = idx + word.length;
+	// 	flag = 1;
+	// }
+	// if(flag == 1){
+	// 	alert('found');
+	// }else{
+	// 	alert('Not found');
+	// }
 	if (textValue.indexOf(word)!=-1)
 	{
 		alert('found')
+		var idx = textValue.indexOf(word);
+		var inhtml = document.getElementById('dekho').innerHTML;
+		inhtml = inhtml.substring(0,idx) + "<span class='highlight'>" + inhtml.substring(idx,idx+word.length) + "</span>" + inhtml.substring(idx + word.length);
+		document.getElementById('dekho').innerHTML = inhtml;
 	}else{
 		alert('Not found')
 	}
@@ -227,7 +245,3 @@ function addRowHandlers() {
 	  currentRow.onclick = createClickHandler(currentRow);
 	}
   }
-
-function setImage(base64) {
-	document.getElementById("qr").src = base64
-}

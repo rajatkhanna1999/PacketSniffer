@@ -9,7 +9,6 @@ import sys
 
 eel.init('web')
 
-
 @eel.expose
 def dummy(dummy_param):
     print("I got a parameter: ", dummy_param)

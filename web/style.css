@@ -213,6 +213,10 @@ div.ex1 {
     top: 20;
     right: 0;
 }
+
+.highlight {
+    background-color: yellow;
+}
 /* table.gridtable th {
     border-width: 1px;
     padding: 8px;

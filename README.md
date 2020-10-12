@@ -1,6 +1,6 @@
 # PacketSniffer
 Packet Sniffer: 
-It Sniffs the packets travelling in the network and Web GUI is made using eel library and a Python backend.
+It Sniffs the packets travelling in the network. Web GUI uses eel library to interact between Python backend and frontend from HTML, CSS and Javascript.
 
 ![](ui_sample1.png)
 ![](ui_sample2.png)
@@ -22,7 +22,12 @@ $ pip install eel pyinstaller pypng
 - Run the app
 
 ```sh
-$ sudo python PacketSniffer.py
+$ sudo python3 PacketSniffer.py
+```
+
+- Open the local host in browser
+```sh
+$ http://localhost:8000/index.html
 ```
 
 ## Packaging the app
